@@ -10,13 +10,13 @@ enable_webhooks: "no"
 github_secret: "webhook_secret"
 
 ### Docker default settings
-docker_registry: "dockerhost"
-docker_registry_namespace: "docker-repo/awx"
+docker_registry: ""
+docker_registry_namespace: "ansible"
 awx_image: "awx"
 awx_isolated_image: "awx_isolated"
-awx_docker_actual_image: "{{ docker_registry }}/{{ docker_registry_namespace }}/{{ awx_image }}:{{ awx_version }}"
-awx_isolated_docker_actual_image: "{{ docker_registry }}/{{ docker_registry_namespace }}/{{ awx_isolated_image }}:{{ awx_version }}"
-awx_webhook_docker_actual_image: "{{ docker_registry }}/{{ docker_registry_namespace }}-webhook:{{ webhook_version }}"
+awx_docker_actual_image: "{{ docker_registry_namespace }}/{{ awx_image }}:{{ awx_version }}"
+awx_isolated_docker_actual_image: "{{ docker_registry_namespace }}/{{ awx_isolated_image }}:{{ awx_version }}"
+awx_webhook_docker_actual_image: "almir/webhook:{{ webhook_version }}"
 docker_network_name: "awx"
 
 ### AWX Default Settings
@@ -42,4 +42,4 @@ pg_database: "awx"
 redis_version: "6"
 
 ### Webhook default settings
-webhook_version: "2.6.9-1"
+webhook_version: "latest"
