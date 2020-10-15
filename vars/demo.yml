@@ -1,24 +1,76 @@
-awx_version: "docker_tag"
-webhook_version: "xxx"
+awx_version: "latest"
+#webhook_version: "xxx"
 enable_webhooks: "no"
-awx_host: "awx.hostname"
-external_database: "no"
-pg_hostname: "postgres.hostname"
+awx_host: "192.168.10.150"
+external_database: "yes"
+pg_hostname: "192.168.10.150"
 create_preload_data: false
 
 # Here is variables from HashiCorp Vault. They can be crypted with ansible vault or in plain text.
-admin_user: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').admin_user }}"
-admin_password: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').admin_password }}"
-automation_user: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').automation_user }}"
-automation_password: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').automation_password }}"
-github_secret: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').github_secret }}"
-awx_secret_key: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').awx_secret_key }}"
-pg_database: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').pg_database }}"
-pg_username: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').pg_username }}"
-pg_password: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').pg_password }}"
-ssl_certificate: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').ssl_certificate }}"
-ssl_key: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').ssl_key }}"
-broadcast_websocket_secret: "{{ lookup('hashi_vault', 'secret=secret/test/data/lab/ansible/awx:data').broadcast_websocket_secret }}"
+admin_user: "admin"
+admin_password: "sicloud"
+automation_user: "vinhnd"
+automation_password: "vinhnd"
+github_secret: "MIID8TCCAtmgAwIBAgIJANtDeOO62b4eMA0GCSqGSIb3DQEBCwUAMIGOMQswCQYD"
+awx_secret_key: "secret_awx"
+pg_database: "awxdb"
+pg_username: "postgres"
+pg_password: "postgrespassword"
+ssl_certificate: |
+  -----BEGIN CERTIFICATE-----
+  MIID8TCCAtmgAwIBAgIJANtDeOO62b4eMA0GCSqGSIb3DQEBCwUAMIGOMQswCQYD
+  VQQGEwJWTjEOMAwGA1UECAwFSGFOb2kxCzAJBgNVBAcMAkhOMRAwDgYDVQQKDAdW
+  TlBULUlUMQswCQYDVQQLDAJTSTEXMBUGA1UEAwwOMTkyLjE2OC4xMC4xNTAxKjAo
+  BgkqhkiG9w0BCQEWG3ZpbmhkdWNuZ3V5ZW4xNzA4QGdtYWlsLmNvbTAeFw0yMDEw
+  MTMwNzA3NDZaFw0zMDEwMTEwNzA3NDZaMIGOMQswCQYDVQQGEwJWTjEOMAwGA1UE
+  CAwFSGFOb2kxCzAJBgNVBAcMAkhOMRAwDgYDVQQKDAdWTlBULUlUMQswCQYDVQQL
+  DAJTSTEXMBUGA1UEAwwOMTkyLjE2OC4xMC4xNTAxKjAoBgkqhkiG9w0BCQEWG3Zp
+  bmhkdWNuZ3V5ZW4xNzA4QGdtYWlsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP
+  ADCCAQoCggEBAKS7u1edeiO27xfffY926wDvBiG91ieuTUbCtyOd9ywJ81PUGcnF
+  P6tAFzmOVG/bKOK6qX3kA+JKdO7+Bkr+zSCzQ9q60OvY0LBEvq3GVmXb8hvUjGJK
+  P8jqb1RB7GvTBeRcZRCuEyXvN9qXnuYZ9jievCOtvhFmFh52m1KBX18g74VJ8WcG
+  F4qfyPtkuv6vZMpkYPLxU+Gb1x6qoLpilrl7W48O9O8fqQ6QqHIflffDSyI4+MVD
+  eyOGG1jy53+1uYFeFDY4YBKsxXzzCHBrTTkBvTcEfLqOEfbEiS37yMHAmB1Kh8U6
+  6iSby8SYft5TS6QQKj1Q5VW1bNivnNnfNUkCAwEAAaNQME4wHQYDVR0OBBYEFIyQ
+  BRJC1S9Y1+UR3ktqL0yVoTXuMB8GA1UdIwQYMBaAFIyQBRJC1S9Y1+UR3ktqL0yV
+  oTXuMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAJgXEJqsbFgb3Ldr
+  JFgPBGKTAB7kLP0NarI+HU4gch7M2SIsl5u5tmlYFq5oB1ICV2Sd0phTwCj6shdo
+  OEcfnpsq3aYZMKmK2Qli03ItDKy9X6V1q5TPC965wdavXoKdoPqiI49Q3oI3NoIJ
+  fb9ODCRSCrC1Wr1XADHKt44PDOWNIKRu/X1zD8IwzQ/x/bKeYsWelFIoFcysDUQu
+  lLxMmBw+LE9kE9CEungiSztdAMEHFHo9YY8PMpeVCC0aq7GiCJXP90aMv9fBXi2B
+  2rz+KryPUvW8ZE+ZbfbS1orEIMb9+HOozPaMMKtPch2KjA9WvFBKJwnUimh1LiHv
+  rN6tL1A=
+  -----END CERTIFICATE-----
+ssl_key: |
+  -----BEGIN PRIVATE KEY-----
+  MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCku7tXnXojtu8X
+  332PdusA7wYhvdYnrk1GwrcjnfcsCfNT1BnJxT+rQBc5jlRv2yjiuql95APiSnTu
+  /gZK/s0gs0PautDr2NCwRL6txlZl2/Ib1IxiSj/I6m9UQexr0wXkXGUQrhMl7zfa
+  l57mGfY4nrwjrb4RZhYedptSgV9fIO+FSfFnBheKn8j7ZLr+r2TKZGDy8VPhm9ce
+  qqC6Ypa5e1uPDvTvH6kOkKhyH5X3w0siOPjFQ3sjhhtY8ud/tbmBXhQ2OGASrMV8
+  8whwa005Ab03BHy6jhH2xIkt+8jBwJgdSofFOuokm8vEmH7eU0ukECo9UOVVtWzY
+  r5zZ3zVJAgMBAAECggEBAIxany3xMIWJcYDnnDVF3sh23sSU2AgLDDBD6oHgLx5I
+  hBdiWW5+Ltcbzi3txKdhFR7IZ2ypf12ojqSprnbrTZ6U3jVYgnTP0E6+469vk2FJ
+  2qg3mjyMgngOtjgVyve7XgPJbRqfFhV2EiKemHX4nL51EFtdxtlQH3xpFcFgFQAY
+  0yf0o/8E8HF2lhuzRcMC5FYDRlDSrhYwVxBiWtCcAbY+YD1ZALxQzHsxpJVmiVIo
+  4sBS1yMdiWTMY5C0okpup/vz81Obj+xaV2mW6VM3wW/fGP4FRhUzY8i8OXhBgFw2
+  0jD2S6cu3zcFHfUgOtFu2WRKkZPHxtwEkTDgU7O/tlkCgYEA2h2DSPDfeTZhBjTZ
+  WywcKEdLeMCKP2kdux89ZhEi/FBae29YN4RTAyMF7IWBrgJ6XZ+zXHTfgL8mgq15
+  SRl48hHHEtGopOubiblTDkTAi1d6UazXzDhcwEp1+2A6ATfj26X9jayQ9yAZcLwo
+  wXj4F/g9wt2B1a3j7UGV70QlTecCgYEAwViXqkms0Jpb1GqIUshLE4oFn08bgHIC
+  BgZMFeMx94GZ4bFv5/KqDrw+5Sd6p9oPXgyftYoJDVpTJIaA0kGqY1AHdklAPmwA
+  Y+9/uWzKzSSG94FX3h1qFQkOHE2L0u/3krgEFjGXz3fp3UFi/Ef18yG/34KJR3rM
+  n7jo97gPHU8CgYEAyrkDfJfkHNTd+NbF7mdhBE6/ZswNskIQ0AqJFoR27+v/LRqf
+  83mZbiDvMJYloYXMFZiJLDW0RgVj1bFGORrjvpmnXWZgSGhzd943w9tC2j/EAIWV
+  TMpV6qNKZQla4CcCMPRmZXcuhYHgI1e+yZOVgzHGtYcLVX75iVqb8HZ19aECgYEA
+  grd2snZlFBOICjCMQguQVoF2E6LUIR7zJ0eSoSmdWoyQkPn5goOZXaT/kMYEMv9G
+  bHt0brQIMrLii0s0RPKIU+SDZwFXIdy61tXRMHfRFKihZyxXT5/rXJVmqNP0uIPs
+  iZFHkgmtbWLRBflzBsVQDzS+GEqUrXLkbQgC2ZfjABkCgYBdRtRQoMr7Uo0yNx+7
+  FO981YRjPB+WQJ/2p/w/DiIiTcLzTG2dtStXrNsHV8IJKlo+slldXe93RQ401Kzx
+  lSsKlG4ERrwjoveivwPmNtP2Ml0rV/XZL6TDNIWM5YMo2Pk8lfBzuEyd5/d7aX1h
+  NNtgZmDUG71D6C01htUyTPjIeA==
+  -----END PRIVATE KEY-----
+broadcast_websocket_secret: "U3hHNk5ZZW5uRHJZa2RCbmx4U04wRUl1UXNMakpGLEdvSWlaOUZBTi5XQi4weThkUGg5WWh4SW0uMlFJUlFYcEViNDVkc2xvZmd0SUxkLk0wdlZvNDlycmRJWnlleTJyS2dydUQ5OXZRTWxydzM4X19NckNKS3Z3R3VXWFpqLlQ="
 
 # https://awx.hostname:9000/hooks/awx-project-{{ name }}
 webhook_awx_projects:

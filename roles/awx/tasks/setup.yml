@@ -3,6 +3,9 @@
   file:
     path: "{{ awx_compose_dir }}"
     state: directory
+- name: Generate broadcast websocket secret
+  set_fact:
+    broadcast_websocket_secret: "{{ lookup('password', '/dev/null length=128') }}"
 
 - name: Create AWX project directory in all nodes
   file:

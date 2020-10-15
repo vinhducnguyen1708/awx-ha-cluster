@@ -5,7 +5,7 @@ services:
     image: {{ awx_webhook_docker_actual_image }}
     container_name: webhook
     ports:
-      - "9000:9000"
+      - "{{ ansible_host }}:9000:9000"
     hostname: webhook
     restart: unless-stopped
     networks:

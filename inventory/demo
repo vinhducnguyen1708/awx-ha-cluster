@@ -1,14 +1,14 @@
 [all:vars]
-ansible_ssh_user=ansible
+ansible_ssh_user=root
 ansible_become=true
 
 [postgres]
-awxn001dc1.domain ansible_ssh_host=10.55.55.76
+# ansible_ssh_host=10.55.55.76
 
 [awx_instance_group_main]
-awxn001dc1.domain ansible_ssh_host=10.55.55.76 node=primary
-awxn001dc12.domain ansible_ssh_host=10.13.55.76
-awxn001dc13.domain ansible_ssh_host=10.3.55.76
+node1 ansible_ssh_host=192.168.10.51 node=primary
+node2 ansible_ssh_host=192.168.10.52
+node3 ansible_ssh_host=192.168.10.53
 
 [awx_instance_group_isolated_one]
 
